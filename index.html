@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link id="pagestyle" rel="stylesheet" type="text/css" href="app.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <title>NFL Crime Statistics</title>
+  </head>
+  <body>
+
+    <nav class="navbar fixed-top navbar-dark bg-primary ">
+      <span class="navbar-brand mx-auto h1 ">NFL Crime Statistics</span>
+    </nav>
+
+<!-- arrests per team  -->
+    <div class="container-fluid chart-size">
+      <div class="container">
+        <nav class="title-bar navbar navbar-light bg-lightshadow-lg p-3 mb-5 bg-white rounded ">
+          <h5 class="navbar-brand mx-auto h1 ">Arrests Per Team</h5>
+        </nav>
+        <div class="row text-center">
+          <div class="col">
+            <p>Top Ten Teams With Most Arrests</p>
+          </div>
+        </div>
+      </div>
+      <div class="teamCrimeContainer" >
+        <canvas id="teamCrimeChart"></canvas>
+      </div>
+    </div>
+
+<!-- top crimes in the NFL -->
+    <div class="container-fluid chart-size">
+      <div class="container">
+        <nav class="title-bar navbar navbar-light bg-lightshadow-lg p-3 mb-5 bg-white rounded ">
+          <span class="navbar-brand mx-auto h1">Top Crimes in the NFL</span>
+        </nav>
+        <div class="row text-center">
+          <div class="col">
+            <p>Top Ten Five Crimes Committed by NFL Players</p>
+          </div>
+        </div>
+      </div>
+      <div class="crimeContainer graph-size mx-auto" >
+        <canvas id="crimeChart"></canvas>
+      </div>
+    </div>
+
+<!-- Top crimes by Team -->
+    <div class="container-fluid chart-size">
+      <div class="container">
+        <nav class="title-bar navbar navbar-light bg-lightshadow-lg p-3 mb-5 bg-white rounded ">
+          <span class="navbar-brand mx-auto h1">Top Crimes by Team</span>
+        </nav>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <div class="input-group">
+                <select class="custom-select" id="teamdd">
+                  <option selected>Choose...</option>
+                  <option value="1" id="DEN">Denver Broncos</option>
+                  <option value="2" id="MIN">Minnesota Vikings</option>
+                  <option value="3" id="CIN">Cincinnati Bengals</option>
+                  <option value="4" id="TB">Tampa Bay Buccaneers</option>
+                  <option value="5" id="JAC">Jacksonville Jaguars</option>
+                  <option value="6" id="TEN">Tennessee Titans</option>
+                  <option value="7" id="IND">Indianapolis Colts</option>
+                  <option value="8" id="KC">Kansas City Chiefs</option>
+                  <option value="9" id="CLE">Cleveland Browns</option>
+                  <option value="10" id="MIA">Miami Dolphins</option>
+                  <option value="11" id="SEA">Seattle Seahawks</option>
+                  <option value="12" id="BAL">Baltimore Ravens</option>
+                  <option value="13" id="LAC">Los Angeles Chargers</option>
+                  <option value="14" id="SF">San Francisco 49ers</option>
+                  <option value="15" id="GB">Green Bay Packers</option>
+                  <option value="16" id="NO">New Orleans Saints</option>
+                  <option value="17" id="PIT">Pittsburgh Steelers</option>
+                  <option value="18" id="NYJ">New York Jets</option>
+                  <option value="19" id="OAK">Oakland Raiders</option>
+                  <option value="20" id="ARI">Arizona Cardinals</option>
+                  <option value="21" id="WAS">Washington Redskins</option>
+                  <option value="22" id="CAR">Carolina Panthers</option>
+                  <option value="23" id="NE">New England Patriots</option>
+                  <option value="24" id="BUF">Buffalo Bills</option>
+                  <option value="25" id="ATL">Atlanta Falcons</option>
+                  <option value="26" id="PHI">Philadelphia Eagles</option>
+                  <option value="27" id="DAL">Dallas Cowboys</option>
+                  <option value="28" id="NYG">New York Giants</option>
+                  <option value="29" id="DET">Detroit Lions</option>
+                  <option value="30" id="LA">Los Angeles Rams</option>
+                  <option value="31" id="HOU">Houston Texans</option>
+                  <option value="32" id="CHI">Chicago Bears</option>
+                </select>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-warning mr-1" type="button" onclick="teamCrimeStatsFunc()">Results</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- top crimes by type per team -->
+      <div class="crimeByTeamContainer graph-size mx-auto"  >
+        <div class="container text-center" id="teamCrimeDiv"></div>
+        <canvas id="crimeByTeamChart"></canvas>
+      </div>
+<!-- most arrested players per team -->
+      <div class="crimeByPlayerContainer graph-size mx-auto" >
+        <div class="container text-center" id="playerCrimeDiv"></div>
+        <canvas id="crimeByPlayerChart"></canvas>
+      </div>
+    </div>
+
+    <nav class="navbar sticky-bottom navbar-light bg-light">
+      <h5 class="mx-auto">
+        This App uses the <a href="http://nflarrest.com/api/">NFL Arrest API</a>
+      </h5>
+    </nav>
+
+    <script src="app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  </body>
+</html>

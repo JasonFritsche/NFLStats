@@ -1,0 +1,33 @@
+body{
+  background: linear-gradient(to bottom right, #505060, #2a2a38, #505060);
+}
+
+.graph-size{
+  margin: 2em;
+  width: 65%;
+  height: 65%;
+}
+
+p{
+  color: #dbdbdb;
+}
+
+.title-bar:hover{
+  box-shadow: 12px 12px #42474c;
+}
+
+@media (min-width:768px) {
+  .chart-size{
+    margin-top: 7em;
+    width: 70%;
+    height: 70%;
+  }
+}
+
+@media (max-width:767px) {
+  .chart-size{
+    margin-top: 7em;
+    width: 100%;
+    height: 100%;
+  }
+}
